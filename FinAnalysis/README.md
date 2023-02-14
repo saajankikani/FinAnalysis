@@ -7,15 +7,15 @@ To compile: <still to come>
 
 Whats inside:
 - Technical Indicators
-	Simple Moving Averages
-	Exponential Moving Averages
-	Sharpe Ratio
-	Relative Strength Index
+	- Simple Moving Averages
+	- Exponential Moving Averages
+	- Sharpe Ratio
+	- Relative Strength Index
 	
 - Fundemental Analysis Methods
-	Discounted Cash Flow
-	Discounted Residual Income Model
-	Book Value
+	- Discounted Cash Flow
+	- Discounted Residual Income Model
+	- Book Value
 - Analysis Techniques
 - Data Manipulation and Format Files 
 
