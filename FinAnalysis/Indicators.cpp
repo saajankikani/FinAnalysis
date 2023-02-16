@@ -18,7 +18,8 @@ double sharpe(){
 }
 
 double simple_mov_avg(DataWrangle data, int roll){
-    while(roll != 50 || roll != 100 || roll != 200){
+    
+    if(roll != 50 && roll != 100 && roll != 200){
         std::cout << "Choose a parameter for SMA [50, 100, or 200]: ";
         std::cin >> roll;
     }
