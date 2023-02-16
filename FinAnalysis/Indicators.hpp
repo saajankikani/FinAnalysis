@@ -10,12 +10,14 @@
 
 #include <stdio.h>
 #include <vector>
+#include <iostream>
+#include "DataWrangle.hpp"
 
 std::vector<double> dcf(int years, double init_fcf, double rate);
 
 double sharpe();
 
-double simple_mov_avg(int roll);
+double simple_mov_avg(DataWrangle data, int roll);
 
 double exp_mov_avg(int roll);
 

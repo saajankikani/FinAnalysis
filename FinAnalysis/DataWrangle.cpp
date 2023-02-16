@@ -58,10 +58,10 @@ void DataWrangle::process(){
     }
 }
 
-std::vector<double> DataWrangle::get_open(){
-    return open_price;
+size_t DataWrangle::open_sz(){
+    return open_price.size();
     
 }
-std::vector<double> DataWrangle::get_close(){
-    return close_price;
+size_t DataWrangle::close_sz(){
+    return close_price.size();
 }

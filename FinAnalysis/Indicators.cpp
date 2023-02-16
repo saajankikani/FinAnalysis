@@ -17,8 +17,20 @@ double sharpe(){
     return 0.0;
 }
 
-double simple_mov_avg(int roll){
-    return 0.0;
+double simple_mov_avg(DataWrangle data, int roll){
+    while(roll != 50 || roll != 100 || roll != 200){
+        std::cout << "Choose a parameter for SMA [50, 100, or 200]: ";
+        std::cin >> roll;
+    }
+    
+    double sma = 0.0;
+    
+    double denom = 1;
+    
+    for(size_t i = data.open_sz() - roll; i < data.open_sz(); ++i){
+        sma = (sma + data.close_price[i]) / denom ;
+        denom = denom + 1;
+    }
 }
 
 double exp_mov_avg(int roll){
