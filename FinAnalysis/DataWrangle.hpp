@@ -25,6 +25,7 @@ public:
     std::string filename;
     std::string ticker;
     
+    //enum in future iterations?
     std::string time_range;
     
     DataWrangle(std::string filename_in);

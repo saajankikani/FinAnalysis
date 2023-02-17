@@ -13,9 +13,14 @@
 #include <iostream>
 #include "DataWrangle.hpp"
 
+struct twin{
+    double prcent = 0.0;
+    double standard_dev = 0.0;
+};
+
 std::vector<double> dcf(int years, double init_fcf, double rate);
 
-double sharpe();
+double sharpe(DataWrangle data);
 
 double simple_mov_avg(DataWrangle data, int roll);
 

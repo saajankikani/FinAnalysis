@@ -13,12 +13,34 @@ std::vector<double> dcf(int years, double init_fcf, double rate){
     return res;
 }
 
-double sharpe(){
+double sharpe(DataWrangle data){
+    //split the period into segments
+    //calculate the return based on the segment
+    //find the variance of each segment
+    //average the variances
+    //sqrt the variances
+    
+    int split = 0;
+    
+    if(data.time_range == "daily"){
+        split = 73; //(365/5)
+        
+        std::vector<twin> values;
+        
+    }else if(data.time_range == "monthly"){
+        split = 3; //(12/4)
+        
+    }else{
+        split = 13; //(52/4)
+        
+    }
+    
     return 0.0;
 }
 
 double simple_mov_avg(DataWrangle data, int roll){
     
+    //rolling average that changes based on the specified value
     if(roll != 50 && roll != 100 && roll != 200){
         std::cout << "Choose a parameter for SMA [50, 100, or 200]: ";
         std::cin >> roll;
@@ -32,6 +54,8 @@ double simple_mov_avg(DataWrangle data, int roll){
         sma = (sma + data.close_price[i]) / denom ;
         denom = denom + 1;
     }
+    
+    return sma;
 }
 
 double exp_mov_avg(int roll){
