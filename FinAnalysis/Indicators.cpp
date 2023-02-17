@@ -7,8 +7,13 @@
 
 #include "Indicators.hpp"
 
-std::vector<double> dcf(int years, double init_fcf, double rate){
+std::vector<double> dcf(std::vector<double> fcf, double wacc){
     std::vector<double> res;
+    
+    for(size_t i = 0; i < fcf.size(); ++i){
+        
+        res.push_back(fcf.at(i)/(pow(1 + wacc, i)));
+    }
     
     return res;
 }
@@ -58,18 +63,18 @@ double simple_mov_avg(DataWrangle data, int roll){
     return sma;
 }
 
-double exp_mov_avg(int roll){
-    return 0.0;
+double exp_mov_avg(DataWrangle data, int smooth, int roll){
+    double ema = data.close_price[data.close_sz() - roll];
+    
+    for(size_t i = data.close_sz() - roll + 1; i < data.close_sz(); ++i){
+        ema = (ema * (1 - (smooth/(1 + roll)))) +
+               (data.close_price[i] + (smooth/ 1 + roll));
+    }
+    
+    return ema;
 }
 
 double disc_resid_inc(){
     return 0.0;
 }
 
-double obv(){
-    return 0.0;
-}
-
-double rsi(){
-    return 0.0;
-}
