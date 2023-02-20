@@ -28,7 +28,7 @@ double simple_mov_avg(DataWrangle data, int roll);
 
 double exp_mov_avg(DataWrangle data, int smooth, int roll);
 
-double disc_resid_inc();
+double disc_resid_inc(double bv, double coe, std::vector<double> inc_forecast, std::vector<double> eq_forecast);
 
 
 #endif /* Indicators_hpp */

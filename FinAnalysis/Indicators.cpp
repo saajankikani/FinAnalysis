@@ -92,7 +92,7 @@ double simple_mov_avg(DataWrangle data, int roll){
     
     double sma = 0.0;
     
-    double denom = 1;
+    double denom = 1.0;
     
     for(size_t i = data.open_sz() - roll; i < data.open_sz(); ++i){
         sma = (sma + data.close_price[i]) / denom ;
@@ -113,7 +113,20 @@ double exp_mov_avg(DataWrangle data, int smooth, int roll){
     return ema;
 }
 
-double disc_resid_inc(){
+double disc_resid_inc(double bv, double coe, std::vector<double> inc_forecast, std::vector<double> eq_forecast){
+    
+    std::vector<double> resid_inc;
+
+    if(inc_forecast.size() != eq_forecast.size()){
+        std::cout<<"Fix vector lengths"<<'\n';
+        return 0.0;
+
+    }
+
+    for(size_t i = 0; i < inc_forecast.size(); ++i){
+        resid_inc.push_back(inc_forecast.at(i) - (eq_forecast.at(i) * coe));
+        
+    }
     return 0.0;
 }
 
