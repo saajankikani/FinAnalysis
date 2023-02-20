@@ -125,8 +125,14 @@ double disc_resid_inc(double bv, double coe, std::vector<double> inc_forecast, s
 
     for(size_t i = 0; i < inc_forecast.size(); ++i){
         resid_inc.push_back(inc_forecast.at(i) - (eq_forecast.at(i) * coe));
-        
     }
-    return 0.0;
+
+    double val = 0.0;
+    const double risk_free_return = 0.03;
+    for(size_t i = 0; i < resid_inc.size(); ++i){
+        val = resid_inc.at(i) / pow(1 + risk_free_return, i + 1);
+
+    }
+    return val + bv;
 }
 
