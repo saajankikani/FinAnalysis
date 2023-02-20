@@ -13,6 +13,7 @@
 #include <iostream>
 #include "DataWrangle.hpp"
 #include <cmath>
+#include <numeric>
 
 struct twin{
     double prcent = 0.0;

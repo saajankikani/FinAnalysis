@@ -18,6 +18,33 @@ std::vector<double> dcf(std::vector<double> fcf, double wacc){
     return res;
 }
 
+void sharpe_calc(DataWrangle data, double split, int segments, std::vector<twin> &val){
+        double split_count = 0.0;
+
+        for(int i = 0; i < segments; ++i){
+            double percent = (data.close_price[split_count] + 
+                    data.close_price[split + split_count])/split;
+            
+            twin input;
+            input.prcent = percent;
+            val.push_back(input);
+            
+            double variance = 0.0;
+
+            double mean = std::accumulate(data.close_price.begin() + split_count, 
+                            data.close_price.begin() + split + split_count, 0.0)/data.close_sz();
+
+            for(size_t i = split_count; i < split_count + split; ++i){
+                variance = variance + pow(mean - data.close_price[i], 2);
+
+            }
+
+            val.at(i).standard_dev = sqrt(variance);
+
+            split_count = split + split_count;
+        }
+}
+
 double sharpe(DataWrangle data){
     //split the period into segments
     //calculate the return based on the segment
@@ -25,22 +52,34 @@ double sharpe(DataWrangle data){
     //average the variances
     //sqrt the variances
     
-    int split = 0;
+    double split = 0.0;
+
+    //Return of a Treasury Bond
+    const double risk_free_rate = 0.03;
+    std::vector<twin> values;
     
     if(data.time_range == "daily"){
-        split = 73; //(365/5)
-        
-        std::vector<twin> values;
+        split = 72; //(365/5) and then consider the indeces
+        sharpe_calc(data, split, 5, values);
         
     }else if(data.time_range == "monthly"){
-        split = 3; //(12/4)
+        split = 2; //(12/4) and then consider the indices
+        sharpe_calc(data, split, 4, values);
         
     }else{
-        split = 13; //(52/4)
+        split = 12; //(52/4) and then consider the indices
+        sharpe_calc(data, split, 12, values);
         
     }
+    double portfolio_return = 0.0;
+    double std_dev = 0.0;
+
+    for(size_t i = 0; i < values.size(); ++i){
+        portfolio_return = (values.at(i).prcent + portfolio_return)/ (i + 1);
+        std_dev = (values.at(i).standard_dev + std_dev)/ (i + 1);
+    }
     
-    return 0.0;
+    return (portfolio_return - risk_free_rate)/ std_dev;
 }
 
 double simple_mov_avg(DataWrangle data, int roll){

@@ -1,4 +1,5 @@
 .DS_Store
 FinAnalysis.xcodeproj/
 FinAnalysis/SPY.csv
+.vscode/settings.json
 
