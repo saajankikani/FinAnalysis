@@ -12,14 +12,16 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout<<"Enter USERID: ";
-    int username;
+    std::string username;
     std::cin >> username;
 
     std::cout<<"Input filename: ";
     std::string file_in;
-    std::cin>> file_in;
+    std::cin >> file_in;
 
     DataWrangle data(file_in);
+    std::cout<<"Processing..."<<'\n';
+    data.process();
 
     std::cout<<"Run Entire package? [y/n]: ";
     char answer;

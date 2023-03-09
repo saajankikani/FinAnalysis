@@ -18,11 +18,7 @@ DataWrangle::DataWrangle(std::string filename_in){
 
 void DataWrangle::process(){
     
-    std::ifstream fin(filename);
-    
-    if(!fin.is_open()){
-        std::cout<<"No filename: "<<filename<<"found "<<'\n';
-    }
+    io::CSVReader<7> fin(filename);
     
     //Date,Open,High,Low,Close,Adj Close,Volume
     std::string date_in;
@@ -32,13 +28,11 @@ void DataWrangle::process(){
     double close_in = 0.0;
     double adj_close = 0.0;
     int volume = 0;
-    std::string junk;
     
-    std::cin >> junk >> junk >> junk >> junk >> junk
-    >> junk >> junk;
+    fin.read_header(io::ignore_extra_column, "Date", "Open", "High", "Low", "Close", "Adj Close", "Volume");
     
-    while(std::cin >> date_in >> open_in >> high_in
-            >> low_in >> close_in >> adj_close >> volume){
+    
+    while(fin.read_row(date_in, open_in, high_in, low_in, close_in, adj_close, volume)){
        
         //Build a bunch of parallel vectors that can be used in the indicators section
         dates.push_back(date_in);
@@ -48,14 +42,13 @@ void DataWrangle::process(){
         volumes.push_back(volume);
     }
     
-    if(open_price.size() > 60){
+    if(open_price.size() == 251){
         time_range = "daily";
         
-    }else if(open_price.size() > 20){
-        time_range = "weekly";
     }else{
-        time_range = "monthly";
+        time_range = "other";
     }
+    
 }
 
 size_t DataWrangle::open_sz(){

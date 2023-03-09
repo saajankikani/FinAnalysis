@@ -13,6 +13,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "csv.h"
 
 class DataWrangle{
 public:
@@ -31,8 +32,6 @@ public:
     DataWrangle(std::string filename_in);
     
     void process();
-    
-    void form();
     
     size_t close_sz();
     
