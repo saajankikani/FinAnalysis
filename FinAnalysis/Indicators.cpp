@@ -91,11 +91,13 @@ double simple_mov_avg(DataWrangle data, int roll){
     }
     
     double sma = 0.0;
+    double sma_numerator = 0.0;
     
     double denom = 1.0;
     
     for(size_t i = data.open_sz() - roll; i < data.open_sz(); ++i){
-        sma = (sma + data.close_price[i]) / denom ;
+        sma_numerator = sma_numerator + data.close_price[i];
+        sma = sma_numerator / denom ;
         denom = denom + 1;
     }
     
