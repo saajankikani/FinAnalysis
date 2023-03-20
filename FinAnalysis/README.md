@@ -3,7 +3,10 @@ perform general fundemental analysis and output the findings into a txt file
 
 Input files: Yahoo finance equity/etf csv file 
 
-To compile: <still to come>
+Make Commands:
+- clean
+- analyze
+- all
 
 Whats inside:
 - Technical Indicators

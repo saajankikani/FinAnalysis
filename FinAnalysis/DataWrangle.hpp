@@ -14,6 +14,7 @@
 #include <fstream>
 #include <iostream>
 #include "csv.h"
+#include <getopt.h>
 
 class DataWrangle{
 public:
@@ -30,6 +31,8 @@ public:
     std::string time_range;
     
     DataWrangle(std::string filename_in);
+    
+    void cmdLine(int argc, char* argv[]);
     
     void process();
     

@@ -16,6 +16,42 @@ DataWrangle::DataWrangle(std::string filename_in){
     }
 }
 
+void cmdLine(int argc, char * argv[]) {
+    bool modeSpecified = false;
+    std::string mode;
+
+    // These are used with getopt_long()
+    opterr = false; // Let us handle all error output for command line options
+    int choice;
+    int option_index = 0;
+    option long_options[] = {
+        // TODO: Fill in two lines, for the "mode" ('m') and
+        // the "help" ('h') options.
+        {"file"  , required_argument, nullptr, 'f'  },
+        {"help"  , no_argument      , nullptr, 'h'  },
+        { nullptr, 0,                 nullptr, '\0' }
+    };
+
+    // TODO: Fill in the double quotes, to match the mode and help options.
+    while ((choice = getopt_long(argc, argv, "f:h", long_options, &option_index)) != -1) {
+        switch (choice) {
+        case 'h':
+            std::cout<<"USAGE: Utilize the -f, or --file flag followed by the csv file to fead into the analyzer" <<'\n';
+            exit(0);
+
+        default:
+            std::cout << "Error: invalid option" << '\n';
+            exit(1);
+        } // switch
+    } // while
+
+    if (!modeSpecified) {
+        std::cout<<"USAGE: Utilize the -f, or --file flag followed by the csv file to fead into the analyzer" <<'\n';
+        exit(0);
+    } // if
+
+} // getMode()
+
 void DataWrangle::process(){
     
     io::CSVReader<7> fin(filename);
