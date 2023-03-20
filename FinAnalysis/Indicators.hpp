@@ -26,7 +26,7 @@ double sharpe(DataWrangle data);
 
 double simple_mov_avg(DataWrangle data, int roll);
 
-double exp_mov_avg(DataWrangle data, int smooth, int roll);
+double exp_mov_avg(DataWrangle data, double smooth, int roll);
 
 double disc_resid_inc(double bv, double coe, std::vector<double> inc_forecast, std::vector<double> eq_forecast);
 

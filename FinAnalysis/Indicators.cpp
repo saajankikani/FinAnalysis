@@ -104,12 +104,18 @@ double simple_mov_avg(DataWrangle data, int roll){
     return sma;
 }
 
-double exp_mov_avg(DataWrangle data, int smooth, int roll){
+double exp_mov_avg(DataWrangle data, double smooth, int roll){
     double ema = data.close_price[data.close_sz() - roll];
+    double denom = 2.0;
     
     for(size_t i = data.close_sz() - roll + 1; i < data.close_sz(); ++i){
-        ema = (ema * (1 - (smooth/(1 + roll)))) +
-               (data.close_price[i] + (smooth/ 1 + roll));
+        double fraction = smooth / (1 + denom) ;
+        
+        ema = (ema * (1 - fraction)) +
+               (data.close_price[i] * fraction);
+        
+        denom = denom + 1;
+        
     }
     
     return ema;

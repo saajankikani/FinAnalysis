@@ -46,7 +46,7 @@ int main(int argc, const char * argv[]) {
 
         }else if(answer == "2"){
 
-            std::cout<<"Exponential Moving Average: "<< exp_mov_avg(data, 2, 50)<<'\n';
+            std::cout<<"Exponential Moving Average: "<< exp_mov_avg(data, 2.0, 50)<<'\n';
       
         }else if(answer == "3"){        
         
