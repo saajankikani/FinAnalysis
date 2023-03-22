@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
 //    std::string file_in;
 //    std::cin >> file_in;
 
-    DataWrangle data(argv[2]);
+    DataWrangle data(argv[1]);
     std::cout<<"Processing..."<<'\n';
     data.process();
 
