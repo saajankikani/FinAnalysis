@@ -1,7 +1,11 @@
-all: analyze
+CC = g++
+BIN = analyze
+SRCS = $(shell find . -name "*.cpp")
+
+all: $(BIN)
 
 clean:
-	rm -f analyze.exe
+	rm -f $(BIN)
 
-analyze: DataWrangle.cpp Indicators.cpp main.cpp
-	g++ -std=c++11 -o analyze.exe DataWrangle.cpp Indicators.cpp main.cpp
+$(BIN): $(SRCS)
+	$(CC) -std=c++11 -o analyze $(SRCS)
